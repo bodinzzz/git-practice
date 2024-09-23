@@ -38,11 +38,58 @@ git reset --hard HEAD~1 # 將當前分支重置到前一個提交點
 ```
 
 ## .git 檔案夾裡的變化
-
+1. `git add`
+  - 新增的檔案內容會以 blob 物件形式寫入 .git 資料夾中的 objects 目錄
+  - index 檔案（暫存區的映射）會更新
+2. `git commit`
+- objects 資料夾會更新，寫入新的 commit 物件，包括：
+  - Blob：每個被追蹤的檔案的內容會以 blob 物件形式保存。
+  - Tree：代表檔案夾結構的物件。
+  - Commit：保存指向 tree 物件、父 commit、提交訊息等資訊的物件。
+- refs 資料夾（或 .git/HEAD 檔案）會被更新，指向最新的 commit。
+- logs 資料夾中的檔案（例如 .git/logs/HEAD）會更新，記錄每次指標移動的詳細情況，方便進行回溯操作
 
 ## Commit Message 撰寫風格
+### 基本原則
+- 每個 commit 應該只包含一個邏輯變更(協作的好習慣：每一次開始寫新程式碼時先從遠端 pull 回本地端)
+- commit message 應該清楚說明變更的原因（why）和內容（what）
+- 英文撰寫，使用祈使句
+- 若與多人協作，可以在最前方寫下名字、commit 的日期
+
+## 格式結構
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Header
+- `type`: 必填，表示 commit 的類型
+  - `feat`: 新功能
+  - `fix`: 修復bug
+  - `docs`: 文檔更新
+  - `style`: 代碼格式調整
+  - `refactor`: 重構代碼
+  - `test`: 添加測試
+  - `chore`: 構建過程或輔助工具的變動
+  - `scope`: 選填，表示影響的範圍
+  - `subject`: 必填，簡短描述，不超過50字元
+
+### Body
+- 選填，詳細說明變更的內容以及原因
+
+### Footer
+- 選填，用於說明重大變更或關閉Issue
+
+## 實用技巧
+- 使用 "If applied, this commit will <你的標題>" 來檢查標題的正確性
+- 重要的變更應在 Footer 中標注 `BREAKING CHANGE:`
+- 關閉 Issue 時使用 `Closes #123, #456`
+
 
 ##### 參考資料
 1. https://www.youtube.com/watch?v=LgTf7m5B0xA
-2. 
+2. https://hackmd.io/VHVoqzLmTDaTFvV_Al_RbA
 (內容有經過 GPT 修飾)
