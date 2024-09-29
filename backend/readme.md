@@ -24,37 +24,37 @@ npm install <package-name> --save-dev
 
 package.json 中的 scripts 主要用來定義一些常用的指令，有點像是定義快捷鍵的概念，以下是一些常用的指令：
 
-````json
+```json
 {
   "scripts": {
     // 1. 預設腳本名稱
-    "start": "node app.js",          // npm start
-    "test": "jest",                  // npm test
+    "start": "node app.js", // npm start
+    "test": "jest", // npm test
 
     // 2. 自定義腳本名稱：可以定義任意名稱，使用 npm run <script-name> 執行
-    "lint": "eslint .",              // npm run lint
-    "dev": "nodemon app.js",         // npm run dev
-    "clean": "rimraf dist",          // npm run clean
+    "lint": "eslint .", // npm run lint
+    "dev": "nodemon app.js", // npm run dev
+    "clean": "rimraf dist", // npm run clean
 
     // 3. 運行多個命令：使用 && 或 || 將多個命令串接
-    "build": "npm run clean && npm run compile",  // 先清除再編譯
+    "build": "npm run clean && npm run compile", // 先清除再編譯
 
     // 4. 傳遞參數：直接將參數傳入命令中
-    "start-with-port": "node server.js --port=8080",  // 指定端口執行
+    "start-with-port": "node server.js --port=8080", // 指定端口執行
 
     // 5. 跨平台兼容性：使用 cross-env 設置環境變量，避免不同平台的兼容問題
-    "build-env": "cross-env NODE_ENV=production webpack",  // 跨平台的環境設置
+    "build-env": "cross-env NODE_ENV=production webpack", // 跨平台的環境設置
 
     // 6. NPM Lifecycle Scripts:使用生命週期腳本進行自動操作
-    "prestart": "echo 'Preparing to start'",  // 開始之前的準備動作
-    "postinstall": "npm run build"            // 安裝後自動編譯
+    "prestart": "echo 'Preparing to start'", // 開始之前的準備動作
+    "postinstall": "npm run build" // 安裝後自動編譯
   },
 
   "config": {
-    "port": "3000"  // 自定義的配置項，可在 scripts 中動態引用
+    "port": "3000" // 自定義的配置項，可在 scripts 中動態引用
   }
 }
-
+```
 
 #### 3. 環境變數設定 port number
 
@@ -62,7 +62,7 @@ package.json 中的 scripts 主要用來定義一些常用的指令，有點像�
 
 ```bash
 npm install dotenv --save-dev
-````
+```
 
 - 在專案根目錄下新增 .env 檔案，並在裡面設定環境變數
 
